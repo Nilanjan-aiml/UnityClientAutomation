@@ -197,7 +197,7 @@ public class UnityClientTest {
 		Actions actions = new Actions(driver);
 		for (WebElement item : filteritems) {
 		    String itemText = item.getText().trim();
-		    if (itemText.equals("pqr")) {
+		    if (itemText.equals("ABC5")) {
 		    	actions.moveToElement(item).doubleClick().perform();
 		        break;
 		    }
@@ -222,10 +222,10 @@ public class UnityClientTest {
 		}
 		/// Verify whether it is correctly opened or not ///////
 		String val=driver.findElementByAccessibilityId("9369b217-aa2e-4c9e-8ad2-23c16de43923").getAttribute("Value.Value");
-		if ("10019".equals(val)) {
-		    System.out.println("SID is correctly displayed as 10019");
+		if ("10015".equals(val)) {
+		    System.out.println("SID is correctly displayed as 10015");
 		} else {
-		    System.out.println("SID mismatch. Expected: 10019, Found: " + val);
+		    System.out.println("SID mismatch. Expected: 10015, Found: " + val);
 		}
 		
 	}
