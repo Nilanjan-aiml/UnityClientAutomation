@@ -9,11 +9,14 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
@@ -41,13 +44,15 @@ public class UnityClientTest {
 	}
 	@AfterMethod
 	public void cleanUp() {
-		driver.quit();
-		setUp();
+		driver.close();
+		driver.findElementByAccessibilityId("yesButton").click();
+//		setUp();
 	}
 	@AfterSuite
 	public void tearDown() {
 		driver.quit();
 	}
+	
 	@Test
 	public void justOpen() {
 		
@@ -227,6 +232,64 @@ public class UnityClientTest {
 		} else {
 		    System.out.println("SID mismatch. Expected: 10015, Found: " + val);
 		}
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		///////close the window /////////////////
+		///
+		driver.findElement(By.name("Save and Close")).click();
+		// Wait for the window to close and switch to the remaining one
+		Set<String> windowHandles = driver.getWindowHandles();
+		for (String handle : windowHandles) {
+		    driver.switchTo().window(handle);
+		    if (driver.getTitle().contains("OnBase") || driver.getPageSource().contains("Admission Management")) {
+		        System.out.println("Switched to main Admission Management window");
+		        break;
+		    }
+		}
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} 
+
+		//////----------------------------------------------------------------//////////
+		
+	
+
+
+		//Actions actions2 = new Actions(driver);
+		//actions2.sendKeys(Keys.chord(Keys.ALT, Keys.F4)).perform();
+		
+		/////create a new view///////
+		///
+		///
+		/*
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement admissionTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("Admission Management")));
+		admissionTab.click();
+
+		WebElement studentTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("Student")));
+		studentTab.click();
+
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		/*
+		for (String handle : driver.getWindowHandles()) {
+		    driver.switchTo().window(handle);
+		    if (driver.getTitle().contains("Student")) {
+		        driver.close();
+		        break;
+		    }
+		}
+		*/
 		
 	}
 
