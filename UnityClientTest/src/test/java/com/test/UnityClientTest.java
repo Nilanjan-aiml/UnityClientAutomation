@@ -208,7 +208,7 @@ public class UnityClientTest {
 		    }
 		}
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -238,10 +238,22 @@ public class UnityClientTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		driver.findElementByName("Contact No.").click();		
+		new Actions(driver).sendKeys("9876543210").perform();
 		///////close the window /////////////////
 		///
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		driver.findElement(By.name("Save and Close")).click();
 		// Wait for the window to close and switch to the remaining one
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		Set<String> windowHandles = driver.getWindowHandles();
 		for (String handle : windowHandles) {
 		    driver.switchTo().window(handle);

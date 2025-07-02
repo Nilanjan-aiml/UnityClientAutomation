@@ -153,12 +153,18 @@ public class CreateNewView {
 		
 		List<WebElement> toggleButtons = driver.findElements(By.className("TextBlock"));
 
+
 		for (WebElement toggle : toggleButtons) {
 		    String name = toggle.getAttribute("Name");
 		    if (name != null && name.trim().equals("Save and Close")) {
 		        toggle.click();
 		        break;
 		    }
+		}
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		//driver.findElement(By.name("Save and Close")).click();
 		
@@ -172,9 +178,21 @@ public class CreateNewView {
 		        break;
 		    }
 		}
+		 
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		List<WebElement> toggleButtons1 = driver.findElements(By.className("TextBlock"));
-
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		for (WebElement toggle : toggleButtons1) {
 		    String name = toggle.getAttribute("Name");
 		    if (name != null && name.trim().equals("Courses")) {
@@ -187,7 +205,6 @@ public class CreateNewView {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // or use WebDriverWait
 		
@@ -200,6 +217,12 @@ public class CreateNewView {
 		        break;
 		    }
 		}
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		/*
 		List<WebElement> menuItems = driver.findElements(By.className("TextBlock"));
 		for (WebElement item : menuItems) {
