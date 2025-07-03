@@ -23,10 +23,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.windows.WindowsDriver;
-
-public class CreateNewView {
+public class SameIdUnique {
 	
-	public static WindowsDriver driver = null;
+public static WindowsDriver driver = null;
 	
 	@BeforeClass
 	public void setUp() {
@@ -84,7 +83,6 @@ public class CreateNewView {
 			e.printStackTrace();
 		}
 		//////////////////// Opens a particular Application //////////////////////////////
-		//System.out.println("hello");
 		/*
 		List<WebElement> menuItems = driver.findElements(By.className("TextBlock"));
 		for (WebElement item : menuItems) {
@@ -96,7 +94,6 @@ public class CreateNewView {
 		}
 		*/
 		driver.findElement(By.xpath("//Text[@Name='Admissiom Management']")).click();
-		
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -104,8 +101,7 @@ public class CreateNewView {
 		}
 		/////////////////// Filter Refresh to enable object creation option  /////////////////
 		List<WebElement> images = driver.findElements(By.className("Image"));
-		for (WebElement img : images) {
-		    
+		for (WebElement img : images) {	    
 		    if (img.getLocation().getX() > 400 && img.getLocation().getY() > 250) {   // x<471 and y<990
 		        img.click();
 		        break;
@@ -120,7 +116,7 @@ public class CreateNewView {
 		driver.findElementByAccessibilityId("Course").click();		
 		
 		try {
-			Thread.sleep(7000);
+			Thread.sleep(6000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -135,7 +131,7 @@ public class CreateNewView {
 		}
 		
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -156,11 +152,8 @@ public class CreateNewView {
 		//driver.findElementByAccessibilityId("998481ed-362a-4712-9d00-c0e31608c93c").sendKeys("800");
 		
 		driver.findElement(By.xpath("//Text[@Name='Save and Close']")).click();
-
 		/*
 		List<WebElement> toggleButtons = driver.findElements(By.className("TextBlock"));
-
-
 		for (WebElement toggle : toggleButtons) {
 		    String name = toggle.getAttribute("Name");
 		    if (name != null && name.trim().equals("Save and Close")) {
@@ -170,126 +163,43 @@ public class CreateNewView {
 		}
 		*/
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//driver.findElement(By.name("Save and Close")).click();
-		
-		///////////////////// Select and click on a particular filter ////////////////////////
-		//driver.findElementByAccessibilityId("TextBlock").click();
-		Set<String> windowHandles = driver.getWindowHandles();
-		for (String handle : windowHandles) {
-		    driver.switchTo().window(handle);
-		    if (driver.getTitle().contains("OnBase") || driver.getPageSource().contains("Admission Management")) {
-		        System.out.println("Switched to main Admission Management window");
-		        break;
-		    }
-		}
-		 
-		try {
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		//List<WebElement> toggleButtons1 = driver.findElements(By.className("TextBlock"));
-		
-		driver.findElement(By.xpath("//Text[@Name='Courses']")).click();
-
-		/*/
-		for (WebElement toggle : toggleButtons1) {
-		    String name = toggle.getAttribute("Name");
-		    if (name != null && name.trim().equals("Courses")) {
-		        toggle.click();
-		        break;
-		    }
-		}
-
-		*/
-		// Add a small wait to ensure UI updates before trying next click
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} // or use WebDriverWait
-		
-		driver.findElement(By.xpath("//Text[@Name='Course Info.']")).click();
-		
-		//List<WebElement> buttons = driver.findElements(By.className("TextBlock"));
-/*
-		for (WebElement button : buttons) {
-		    String name = button.getAttribute("Name");
-		    if (name != null && name.trim().equals("Course Info.")) {
-		        button.click();
-		        break;
-		    }
-		}
-		*/
+		driver.findElementByAccessibilityId("okButton").click();
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
-		/*
-		List<WebElement> menuItems = driver.findElements(By.className("TextBlock"));
-		for (WebElement item : menuItems) {
-		    String itemText = item.getText().trim();
-		    if (itemText.equals("Admissiom Management")) {
-		        item.click();
-		        break;
-		    }
-		}
-		//driver.findElementByXPath("//Button[@ClassName='Button' and @Name='Courses']").click();
-		
-		List<WebElement> filters = driver.findElements(By.className("TextBlock"));
-		for (WebElement item : filters) {
-		String itemText = item.getText().trim();
-		if (itemText.equals("Courses")) {
-		    item.click();
-		    break;
-			}
-		}
-		for (WebElement item : filters) {
-			String itemText = item.getText().trim();
-			if (itemText.equals("Course Info.")) {
-			    item.click();
-			    break;
-				}
-			}
-			
-		try {
-		Thread.sleep(2000);
-		} catch (InterruptedException e) {
-		e.printStackTrace();
-		}
-		*/
-		List<String> expectedRecords = Arrays.asList("C003", "IOT","800");
-		List<WebElement> records = driver.findElements(By.className("SimpleTextBlock"));
-		List<String> actualRecords = new ArrayList<>();
-		
-		
-		
-		///////for the rows which have all the non empty values in its corresponding fields//////
-		for (WebElement record : records) {
-		    String text = record.getText().trim();
-		    if (!text.isEmpty() && expectedRecords.contains(text) && !actualRecords.contains(text)) {
-		        actualRecords.add(text);
-		        System.out.println("Found record: " + text);
-		    }
-		}
-		if (actualRecords.containsAll(expectedRecords)) {
-		    System.out.println("All records are displayed correctly.");
-		} else {
-		    System.out.println("Missing records.Expected: "+ expectedRecords + ",Found: "+actualRecords);
-		}
-		try {
+		WebElement closeBtn = driver.findElement(By.xpath("//*[contains(@Name,'Close')]"));
+        closeBtn.click(); 
+        try {
 			Thread.sleep(2000);
-			} catch (InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
-			}
+		}
+		driver.findElementByAccessibilityId("yesButton").click();
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Set<String> handles = driver.getWindowHandles();
+        for (String handle : handles) {
+            driver.switchTo().window(handle);
+            if (driver.getTitle().contains("OnBase")) {
+                break;
+            }
+        }
+		//driver.close();
+		//driver.findElementByAccessibilityId("yesButton").click();
+		//driver.findElement(By.name("Save and Close")).click();
+		
+		///////////////////// Select and click on a particular filter ////////////////////////
+		//driver.findElementByAccessibilityId("TextBlock").click();
 		
 	}
-
 }

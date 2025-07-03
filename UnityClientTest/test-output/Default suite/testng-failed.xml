@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.test.CreateNewView">
+      <class name="com.test.SameIdUnique">
         <methods>
-          <include name="cleanUp"/>
-          <include name="tearDown"/>
           <include name="setUp"/>
+          <include name="tearDown"/>
           <include name="justOpen"/>
+          <include name="cleanUp"/>
         </methods>
-      </class> <!-- com.test.CreateNewView -->
+      </class> <!-- com.test.SameIdUnique -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

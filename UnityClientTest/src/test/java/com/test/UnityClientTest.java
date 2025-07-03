@@ -85,6 +85,8 @@ public class UnityClientTest {
 		}
 		//////////////////// Opens a particular Application //////////////////////////////
 		//System.out.println("hello");
+		driver.findElement(By.xpath("//Text[@Name='Admissiom Management']")).click();
+		/*
 		List<WebElement> menuItems = driver.findElements(By.className("TextBlock"));
 		for (WebElement item : menuItems) {
 		    String itemText = item.getText().trim();
@@ -93,6 +95,7 @@ public class UnityClientTest {
 		        break;
 		    }
 		}
+		*/
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -114,6 +117,8 @@ public class UnityClientTest {
 		}
 		///////////////////// Select and click on a particular filter ////////////////////////
 		//driver.findElementByAccessibilityId("TextBlock").click();
+		driver.findElement(By.xpath("//Text[@Name='Student Selection']")).click();
+		/*
 		List<WebElement> filters = driver.findElements(By.className("TextBlock"));
 		for (WebElement item : filters) {
 		    String itemText = item.getText().trim();
@@ -122,6 +127,7 @@ public class UnityClientTest {
 		        break;
 		    }
 		}
+		*/
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -152,7 +158,7 @@ public class UnityClientTest {
 			e.printStackTrace();
 		}
 		////////////////// Verify whether the rows are correctly displayed or not //////////////////
-		List<String> expectedRecords = Arrays.asList("10015", "ABC5","789","O+","");
+		List<String> expectedRecords = Arrays.asList("10015", "ABC5","789","O+","1234");
 		List<WebElement> records = driver.findElements(By.className("SimpleTextBlock"));
 		List<String> actualRecords = new ArrayList<>();
 		boolean empty = true;
@@ -197,7 +203,20 @@ public class UnityClientTest {
 			e.printStackTrace();
 		}
 
+		///////////////////// Verify whether the header 'Blood Group' [a particular header] is displayed or not //////////
+		List<WebElement> headers1 = driver.findElements(By.xpath("//HeaderItem[@Name='Blood Group']"));
+
+		if (!headers1.isEmpty()) {
+		    System.out.println("Header 'Blood Group' is displayed.");
+		} else {
+		    System.out.println("Header 'Blood Group' is missing.");
+		}
+
 		///////Opens a particular instance from a record that is shown in the filter records//////
+		///
+		WebElement abc5Element = driver.findElement(By.xpath("//Custom[@ClassName='Cell' and @Name='ABC5']"));
+		new Actions(driver).moveToElement(abc5Element).doubleClick().perform();
+		/*
 		List<WebElement> filteritems = driver.findElements(By.className("Cell"));
 		Actions actions = new Actions(driver);
 		for (WebElement item : filteritems) {
@@ -207,6 +226,7 @@ public class UnityClientTest {
 		        break;
 		    }
 		}
+		*/
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -238,8 +258,14 @@ public class UnityClientTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		driver.findElementByName("Contact No.").click();		
-		new Actions(driver).sendKeys("9876543210").perform();
+		driver.findElementByName("Contact No.").click();	
+		new Actions(driver).keyDown(Keys.CONTROL)
+	    .sendKeys("a")
+	    .keyUp(Keys.CONTROL)
+	    .sendKeys(Keys.DELETE)
+	    .sendKeys("1234")  // now type the new number
+	    .perform();
+		
 		///////close the window /////////////////
 		///
 		try {
