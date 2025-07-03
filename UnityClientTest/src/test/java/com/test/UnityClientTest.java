@@ -263,7 +263,7 @@ public class UnityClientTest {
 	    .sendKeys("a")
 	    .keyUp(Keys.CONTROL)
 	    .sendKeys(Keys.DELETE)
-	    .sendKeys("1234")  // now type the new number
+	    .sendKeys("9876543210")  // now type the new number
 	    .perform();
 		
 		///////close the window /////////////////
@@ -280,6 +280,7 @@ public class UnityClientTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 		Set<String> windowHandles = driver.getWindowHandles();
 		for (String handle : windowHandles) {
 		    driver.switchTo().window(handle);
@@ -288,7 +289,14 @@ public class UnityClientTest {
 		        break;
 		    }
 		}
-		
+		/*
+		String err = driver.findElement(By.xpath("//*[contains(@Name, 'Saved Successfully')]")).getAttribute("Name");
+		if (err.equals("Saved Sucessfully.")) {
+			System.out.println("Record saved successfully");
+		} else {
+			System.out.println("Record not saved");
+		}
+		*/
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {

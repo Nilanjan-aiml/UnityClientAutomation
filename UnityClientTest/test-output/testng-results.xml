@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-07-03T02:06:01 EDT" name="Default suite" finished-at="2025-07-03T02:08:10 EDT" duration-ms="129380">
+  <suite started-at="2025-07-03T06:00:00 EDT" name="Default suite" finished-at="2025-07-03T06:02:02 EDT" duration-ms="121685">
     <groups>
     </groups>
-    <test started-at="2025-07-03T02:06:01 EDT" name="Default test" finished-at="2025-07-03T02:08:10 EDT" duration-ms="129380">
+    <test started-at="2025-07-03T06:00:00 EDT" name="Default test" finished-at="2025-07-03T06:02:02 EDT" duration-ms="121685">
       <class name="com.test.UnityClientTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.test.UnityClientTest@79e2c065]" started-at="2025-07-03T02:06:01 EDT" name="setUp" finished-at="2025-07-03T02:06:05 EDT" duration-ms="4552" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.test.UnityClientTest@79e2c065]" started-at="2025-07-03T06:00:01 EDT" name="setUp" finished-at="2025-07-03T06:00:05 EDT" duration-ms="4132" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="justOpen()[pri:0, instance:com.test.UnityClientTest@79e2c065]" started-at="2025-07-03T02:06:05 EDT" name="justOpen" finished-at="2025-07-03T02:08:04 EDT" duration-ms="118796" status="PASS">
+        <test-method signature="justOpen()[pri:0, instance:com.test.UnityClientTest@79e2c065]" started-at="2025-07-03T06:00:05 EDT" name="justOpen" finished-at="2025-07-03T06:01:57 EDT" duration-ms="111849" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- justOpen -->
-        <test-method is-config="true" signature="cleanUp()[pri:0, instance:com.test.UnityClientTest@79e2c065]" started-at="2025-07-03T02:08:04 EDT" name="cleanUp" finished-at="2025-07-03T02:08:10 EDT" duration-ms="5952" status="PASS">
+        <test-method is-config="true" signature="cleanUp()[pri:0, instance:com.test.UnityClientTest@79e2c065]" started-at="2025-07-03T06:01:57 EDT" name="cleanUp" finished-at="2025-07-03T06:02:02 EDT" duration-ms="5594" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanUp -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.test.UnityClientTest@79e2c065]" started-at="2025-07-03T02:08:11 EDT" name="tearDown" finished-at="2025-07-03T02:08:12 EDT" duration-ms="1445" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.test.UnityClientTest@79e2c065]" started-at="2025-07-03T06:02:02 EDT" name="tearDown" finished-at="2025-07-03T06:02:03 EDT" duration-ms="867" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

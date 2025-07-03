@@ -17,6 +17,7 @@ import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
@@ -167,6 +168,10 @@ public static WindowsDriver driver = null;
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		String errorText = driver.findElement(By.xpath("//*[contains(@Name, 'The value:')]")).getAttribute("Name");
+		System.out.println("Popup Message: " + errorText);
+		Assert.assertTrue(errorText.contains("already in use"), "Error message validation failed!");
+		
 		driver.findElementByAccessibilityId("okButton").click();
 		try {
 			Thread.sleep(3000);
