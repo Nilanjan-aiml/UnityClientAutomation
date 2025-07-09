@@ -1,5 +1,6 @@
 package com.test;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -18,8 +19,25 @@ import io.appium.java_client.windows.WindowsDriver;
 
 public class UserPromptFilter {
 	public static WindowsDriver driver = null;
+	public static Process process = null;
 		@BeforeClass
 		public void setUp() {
+			
+
+			String WAPServerPath="C:\\Users\\nghosh\\git\\repository\\UnityClientTest\\src\\test\\resources\\Windows Application Driver\\WinAppDriver.exe";
+			ProcessBuilder builder = new ProcessBuilder(WAPServerPath).inheritIO();
+			try {
+				process = builder.start();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				Thread.sleep(5000); // Wait for the server to start
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			
 			DesiredCapabilities cap= new DesiredCapabilities();
 			cap.setCapability("app", "C:\\Program Files (x86)\\Hyland\\Unity Client\\obunity.exe");
 			cap.setCapability("platformName", "Windows");
@@ -36,6 +54,7 @@ public class UserPromptFilter {
 		public void cleanUp() {
 			driver.close();
 			driver.findElementByAccessibilityId("yesButton").click();
+			process.destroy();
 	//		setUp();
 		}
 		@AfterSuite

@@ -1,4 +1,5 @@
 package com.test;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -27,9 +28,24 @@ import io.appium.java_client.windows.WindowsDriver;
 public class UnityClientTest {
 	
 	public static WindowsDriver driver = null;
+	public static Process process = null;
 	
 	@BeforeClass
 	public void setUp() {
+		
+		String WAPServerPath="C:\\Users\\nghosh\\git\\repository\\UnityClientTest\\src\\test\\resources\\Windows Application Driver\\WinAppDriver.exe";
+		ProcessBuilder builder = new ProcessBuilder(WAPServerPath).inheritIO();
+		try {
+			process = builder.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			Thread.sleep(5000); // Wait for the server to start
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		DesiredCapabilities cap= new DesiredCapabilities();
 		cap.setCapability("app", "C:\\Program Files (x86)\\Hyland\\Unity Client\\obunity.exe");
 		cap.setCapability("platformName", "Windows");
@@ -46,6 +62,7 @@ public class UnityClientTest {
 	public void cleanUp() {
 		driver.close();
 		driver.findElementByAccessibilityId("yesButton").click();
+		process.destroy();
 //		setUp();
 	}
 	@AfterSuite
@@ -275,6 +292,33 @@ public class UnityClientTest {
 		}
 		driver.findElement(By.name("Save and Close")).click();
 		// Wait for the window to close and switch to the remaining one
+		
+		
+		/////save message is getting displayed or not //////////
+		/*
+		Set<String> windowHandless = driver.getWindowHandles();
+		for (String handle : windowHandless) {
+		    driver.switchTo().window(handle);
+		    if (driver.getTitle().equals("OnBase")) {
+		        System.out.println("Switched to main Admission Management window");
+		        break;
+		    }
+		}
+		String saveElement = driver.findElementByAccessibilityId("statusMessageText").getAttribute("Name");
+		if (saveElement.contains("Saved Successfully")) {
+		    System.out.println("Save confirmation message is displayed: " + saveElement);
+		} else {
+		    System.out.println("Save confirmation message is not displayed.");
+		}
+		/*
+		WebElement saveElement = driver.findElement(By.xpath("//Text[@ClassName='TextBlock' and @Name='Saved Successfully.']"));
+		if (saveElement.isDisplayed()) {
+		    System.out.println("Save confirmation message is displayed.");
+		} else {
+		    System.out.println("Save confirmation message is not displayed.");
+		}
+		*/
+		//System.out.println("Save confirmation message appeared");
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
